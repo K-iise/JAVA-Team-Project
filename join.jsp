@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width", initial-scale="1" >  <!-- 반응형 웹에 사용하는 메타태그 -->
 <link rel="stylesheet" href="css/bootstrap.css"> <!-- 참조  -->
-<title>동의대 </title>
+<title>동의대 컴퓨터 공학과</title>
 </head>
 <body>
     <nav class ="navbar navbar-default">
@@ -18,7 +18,7 @@
                 <span class ="icon-bar"></span>
                 <span class ="icon-bar"></span>
             </button>
-            <a class ="navbar-brand" href="main.jsp">JSP 게시판 웹 사이트</a>
+            <a class ="navbar-brand" href="main.jsp">동의대 컴퓨터 공학과</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
