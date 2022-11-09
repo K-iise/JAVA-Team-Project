@@ -11,7 +11,7 @@
 <body>
     <nav class ="navbar navbar-default">
         <div class="navbar-header"> <!-- 홈페이지의 로고 -->
-            <button type="button" class="navbar-toggle collapsed"
+            <button type="button" class="navbar-toggle collapsed" 
                 data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                 aria-expand="false">
                 <span class ="icon-bar"></span> <!-- 줄였을때 옆에 짝대기 -->
