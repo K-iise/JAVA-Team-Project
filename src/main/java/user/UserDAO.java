@@ -59,4 +59,64 @@ public class UserDAO {
 		}
 		return -1; // 데이터베이스 오류
 	}
+	
+	public String findID(String userName, String userEmail)
+	{
+		String SQL = "SELECT userID FROM USER WHERE userName = ? AND userEmail = ?";
+
+		try
+		{
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userName);
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+			{
+				return rs.getString(1);	
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;	
+	}
+	
+	public int findPwd(String userID, String userEmail)
+	{
+		String SQL = "SELECT * FROM USER WHERE userID = ? AND userEmail = ?";	
+		try	
+		{
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1,  userID);		
+			pstmt.setString(2, userEmail);
+			rs = pstmt.executeQuery();
+			if (rs.next())
+				return 1; 
+			else
+				return -1;	
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return -2; 
+	}
+		
+	public int changePwd(String userPassword, String userID)
+	{
+		String SQL = "UPDATE USER SET userPassword = ? WHERE userID = ?";
+		try
+		{
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userPassword);
+			pstmt.setString(2, userID);
+			return pstmt.executeUpdate();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return -1; 	
+	}
 }

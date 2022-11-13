@@ -128,10 +128,63 @@ public class BbsDAO {
 				bbs.setBbsDate(rs.getString(4));
 				bbs.setBbsContent(rs.getString(5));
 				bbs.setBbsAvailable(rs.getInt(6));
+				return bbs;
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	// 게시글 수정 메소드
+	public int update(int bbsID, String bbsTitle, String bbsContent) {
+		String SQL = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, bbsTitle);
+			pstmt.setString(2, bbsContent);
+			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+		
+	}
+	
+	// 게시글 삭제 메소드
+	public int delete(int bbsID) {
+		// 실제 데이터를 삭제하는 것이 아니라 게시글 유효숫자를 '0'으로 수정한다.
+		String SQL = "update bbs set bbsAvailable = 0 where bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; // 데이터베이스 오류
+		
+	}
+	
+	public int read(int bbsID)
+	{
+		PreparedStatement pstmt = null;
+		try {
+			String SQL = "UPDATE bbs SET readCount = readCount + 1 WHERE bbsID = ?";
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
 	}
 }

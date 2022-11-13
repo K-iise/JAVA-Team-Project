@@ -72,7 +72,7 @@
 				aria-expanded="false">회원관리<span class="caret"></span></a>
 				<ul class="dropdown-menu">
 				<li><a href="logoutAction.jsp">로그아웃</a></li>
-				<li><a href="join.jsp">회원 정보</a></li>
+				<li><a href="userIf.jsp">회원 정보</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -103,7 +103,8 @@
 						<td><%= list.get(i).getBbsID() %></td>
 						<!--  게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 건다. -->
 						<td><a href = "view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
-							<%= list.get(i).getBbsTitle() %></a></td>
+							<%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
+									.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
 						<td><%= list.get(i).getUserID() %></td>
 						<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13) + "시" + list.get(i).getBbsDate().substring(14,16) + "분 " %></td>
 					</tr>
