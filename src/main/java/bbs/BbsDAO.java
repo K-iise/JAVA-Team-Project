@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
+import java.util.ArrayList;
+
 public class BbsDAO {
 
 	private Connection conn; // 자바와 데이터베이스를 연결
@@ -22,8 +23,9 @@ public class BbsDAO {
 		}
 	}
 	
+	// 작성일자 메소드
 	public String getDate() {
-		String SQL = "SELECT NOW()";
+		String SQL = "SELECT NOW()"; // 쿼리문
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
@@ -36,7 +38,9 @@ public class BbsDAO {
 		return ""; // 데이터베이스 오류
 	}
 	
+	// 게시글 번호 부여 메소드
 	public int getNext() {
+		// 현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다.
 		String SQL = "SELECT bbsID FROM BBS ORDER BY bbsID DESC";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -52,25 +56,27 @@ public class BbsDAO {
 		
 	}
 	
+	// 글쓰기 메소드
 	public int write(String bbsTitle, String userID, String bbsContent) {
 		String SQL = "INSERT INTO BBS VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext());
-			pstmt.setString(2, bbsTitle);
-			pstmt.setString(3, userID);
-			pstmt.setString(4, getDate());
-			pstmt.setString(5, bbsContent);
-			pstmt.setInt(6, 1);
+			pstmt.setInt(1, getNext()); 	// 게시글 번호
+			pstmt.setString(2, bbsTitle); 	// 글 제목 
+			pstmt.setString(3, userID);		// 사용자 ID
+			pstmt.setString(4, getDate());	// 게시글 작성일자
+			pstmt.setString(5, bbsContent);	// 게시글 내용
+			pstmt.setInt(6, 1);				// 게시글의 유효번호
 			return pstmt.executeUpdate(); 
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return -1; // 데이터베이스 오류
 	}
+	
 	// 게시글 리스트 메소드.
-	public ArrayList<Bbs>getList(int pageNumber){
-		String SQL = "SELECT * FROM BBS WHERE bbsID < ? AND bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+	public ArrayList<Bbs> getList(int pageNumber){
+		String SQL = "select * from bbs where bbsID < ? and bbsAvailable = 1 order by bbsID desc limit 10";
 		ArrayList<Bbs> list = new ArrayList<Bbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -92,9 +98,9 @@ public class BbsDAO {
 		return list;
 	}
 	
-	// 게시판의 글이 10개가 넘어 갈 시 true, false
+	// 페이징 처리 메소드
 	public boolean nextPage(int pageNumber) {
-		String SQL = "SELECT * FROM BBS WHERE bbsID < ? and bbsAvailable = 1 ORDER BY bbsID DESC LIMIT 10";
+		String SQL = "select * from bbs where bbsID < ? and bbsAvailable = 1";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
@@ -102,9 +108,30 @@ public class BbsDAO {
 			if(rs.next()) {
 				return true;
 			}
-		} catch(Exception e) {
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public Bbs getBbs(int bbsID) {
+		String SQL = "SELECT * FROM BBS WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setBbsID(rs.getInt(1));
+				bbs.setBbsTitle(rs.getString(2));
+				bbs.setUserID(rs.getString(3));
+				bbs.setBbsDate(rs.getString(4));
+				bbs.setBbsContent(rs.getString(5));
+				bbs.setBbsAvailable(rs.getInt(6));
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

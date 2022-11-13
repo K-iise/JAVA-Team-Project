@@ -11,9 +11,16 @@
 <meta name="viewport" content="width=device-width", initial-scale"="1">
 <link rel="stylesheet" href="css/bootstrap.css"> 
 <title>E-러닝 게시판 웹 사이트</title>
+<style type="text/css">
+		a, a:hover{
+			color: #000000;
+			text-decoration: none;
+		}}
+</style>
 </head>
 <body>
 	<%
+		// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
 		String userID = null;
 		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
@@ -23,6 +30,7 @@
 		// 'int'타입으로 캐스팅을 해주고 그 값을 'pageNumber' 변수에 저장한다.
 		if(request.getParameter("pageNumber")!= null){
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		}
 	%>
 	<nav class ="navbar navbar-default">
 	<div class="navbar-header">
@@ -104,9 +112,31 @@
 					%>
 				</tbody>
 			</table>
+			<!-- 페이징 처리 영역 -->
+			<%
+				if(pageNumber != 1){
+			%>
+				<a href="vvs.jsp?pageNumber=<%=pageNumber-1 %>"
+					class="btn btn-succes btn-arraw-left">이전</a>
+			<%
+				}
+			%>
+			
+			<% 
+				if(bbsDAO.nextPage(pageNumber + 1)){
+			%>
+				<a href="vvs.jsp?pageNumber=<%=pageNumber + 1%>"
+					class="btn btn-success btn-arraw-Left">다음</a>
+			<%
+				}
+			%>
+			<!-- 글쓰기 버튼 생성 -->
 			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>	
+	<!-- 게시판 메인 페이지 영역 끝 -->
+	
+	<!-- 부트스트랩 참조 영역 -->
 	<script src="https:code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 
