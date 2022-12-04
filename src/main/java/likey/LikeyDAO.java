@@ -12,7 +12,7 @@ public class LikeyDAO {
 	
 	public LikeyDAO() {
 		try {
-			String dbURL = "jdbc:mysql://localhost:3306/bbs?serverTimezone=Asia/Seoul&useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+			String dbURL = "jdbc:mysql://localhost:3306/vvs";
 			String dbID = "root";
 			String dbPassword = "root";
 			Class.forName("com.mysql.jdbc.Driver");
