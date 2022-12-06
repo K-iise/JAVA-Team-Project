@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="bbs.BbsDAO" %>
+<%@ page import="bbs.Bbs" %>
+<%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -14,15 +17,6 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#712cf9">
 
 
     <style>
@@ -104,10 +98,16 @@
 
 
 	<%
-		String userID = null;	// 로그인을 안 한 사람이라면 null 값
-		if (session.getAttribute("userID") != null)	// 로그인을 한 사람이라면 값 유지
-		{
+		// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
+		String userID = null;
+		if(session.getAttribute("userID") != null){
 			userID = (String) session.getAttribute("userID");
+		}
+		int pageNumber = 1; // 기본은 1 페이지를 할당
+		// 만약 파라미터로 넘어온 오브젝트 타입 'PageNumber'가 존재한다면
+		// 'int'타입으로 캐스팅을 해주고 그 값을 'pageNumber' 변수에 저장한다.
+		if(request.getParameter("pageNumber")!= null){
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 	%>
     
@@ -165,7 +165,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="Javavvs.jsp">
+            <a class="nav-link" href="#">
             <i class="bi bi-file-earmark-text"></i>
               <span data-feather="file-text" class="align-text-bottom"></span>
               Java Language
@@ -198,161 +198,63 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>E-러닝 게시판</h2>
+        <h2>Java Language</h2>
       </div>
-      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="https://computer.deu.ac.kr/_res/deu/computer/img/m_visual1.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="https://computer.deu.ac.kr/_res/deu/computer/img/m_visual2.jpg" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="https://computer.deu.ac.kr/_res/deu/computer/img/m_visual3.jpg" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-</div>
-
-					<h2>Section title</h2>
-					<div class="table-responsive">
-						<table class="table table-striped table-sm">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">Header</th>
-									<th scope="col">Header</th>
-									<th scope="col">Header</th>
-									<th scope="col">Header</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1,001</td>
-									<td>random</td>
-									<td>data</td>
-									<td>placeholder</td>
-									<td>text</td>
-								</tr>
-								<tr>
-									<td>1,002</td>
-									<td>placeholder</td>
-									<td>irrelevant</td>
-									<td>visual</td>
-									<td>layout</td>
-								</tr>
-								<tr>
-									<td>1,003</td>
-									<td>data</td>
-									<td>rich</td>
-									<td>dashboard</td>
-									<td>tabular</td>
-								</tr>
-								<tr>
-									<td>1,003</td>
-									<td>information</td>
-									<td>placeholder</td>
-									<td>illustrative</td>
-									<td>data</td>
-								</tr>
-								<tr>
-									<td>1,004</td>
-									<td>text</td>
-									<td>random</td>
-									<td>layout</td>
-									<td>dashboard</td>
-								</tr>
-								<tr>
-									<td>1,005</td>
-									<td>dashboard</td>
-									<td>irrelevant</td>
-									<td>text</td>
-									<td>placeholder</td>
-								</tr>
-								<tr>
-									<td>1,006</td>
-									<td>dashboard</td>
-									<td>illustrative</td>
-									<td>rich</td>
-									<td>data</td>
-								</tr>
-								<tr>
-									<td>1,007</td>
-									<td>placeholder</td>
-									<td>tabular</td>
-									<td>information</td>
-									<td>irrelevant</td>
-								</tr>
-								<tr>
-									<td>1,008</td>
-									<td>random</td>
-									<td>data</td>
-									<td>placeholder</td>
-									<td>text</td>
-								</tr>
-								<tr>
-									<td>1,009</td>
-									<td>placeholder</td>
-									<td>irrelevant</td>
-									<td>visual</td>
-									<td>layout</td>
-								</tr>
-								<tr>
-									<td>1,010</td>
-									<td>data</td>
-									<td>rich</td>
-									<td>dashboard</td>
-									<td>tabular</td>
-								</tr>
-								<tr>
-									<td>1,011</td>
-									<td>information</td>
-									<td>placeholder</td>
-									<td>illustrative</td>
-									<td>data</td>
-								</tr>
-								<tr>
-									<td>1,012</td>
-									<td>text</td>
-									<td>placeholder</td>
-									<td>layout</td>
-									<td>dashboard</td>
-								</tr>
-								<tr>
-									<td>1,013</td>
-									<td>dashboard</td>
-									<td>irrelevant</td>
-									<td>text</td>
-									<td>visual</td>
-								</tr>
-								<tr>
-									<td>1,014</td>
-									<td>dashboard</td>
-									<td>illustrative</td>
-									<td>rich</td>
-									<td>data</td>
-								</tr>
-								<tr>
-									<td>1,015</td>
-									<td>random</td>
-									<td>tabular</td>
-									<td>information</td>
-									<td>text</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+      
+<div class = "container-fluid">
+		<div class="row">
+			<table class="table table=striped" style="text-align: center; border: 1px solid #dddddd">
+				<thead>
+					<tr>
+						<th style="background-color: #eeeeee; text-align: center;">번호</th>
+						<th style="background-color: #eeeeee; text-align: center;">제목</th>
+						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
+						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+						BbsDAO bbsDAO = new BbsDAO(); // 객체 생성
+						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+						for(int i = 0; i < list.size(); i++){
+					%>
+					<tr>
+						<td><%= list.get(i).getBbsID() %></td>
+						<!--  게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 건다. -->
+						<td><a href = "view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
+							<%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
+									.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
+						<td><%= list.get(i).getUserID() %></td>
+						<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13) + "시" + list.get(i).getBbsDate().substring(14,16) + "분 " %></td>
+					</tr>
+					<%
+					}
+					%>
+				</tbody>
+			</table>
+			<!-- 페이징 처리 영역 -->
+			<%
+				if(pageNumber != 1){
+			%>
+				<a href="Javavvs.jsp?pageNumber=<%=pageNumber-1 %>"
+					class="btn btn-succes btn-arraw-left">이전</a>
+			<%
+				}
+			%>
+			
+			<% 
+				if(bbsDAO.nextPage(pageNumber + 1)){
+			%>
+				<a href="Javavvs.jsp?pageNumber=<%=pageNumber + 1%>"
+					class="btn btn-success btn-arraw-Left">다음</a>
+			<%
+				}
+			%>
+			<!-- 글쓰기 버튼 생성 -->
+		</div>
+		<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+	</div>	
+	<!-- 게시판 메인 페이지 영역 끝 -->
 				</main></div>
 </div>
 

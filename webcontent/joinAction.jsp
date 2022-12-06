@@ -32,7 +32,7 @@ request.setCharacterEncoding("UTF-8");
 		script.println("</script>");
 	}
 	if (user.getUserID() == null || user.getUserPassword() == null || user.getUserName() == null
-			|| user.getUserGender() == null || user.getUserGender() == null) {
+			|| user.getUserEmail() == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('입력이 안 된 사항이 있습니다.')");
