@@ -27,13 +27,11 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
       }
-
       .b-example-divider {
         height: 3rem;
         background-color: rgba(0, 0, 0, .1);
@@ -41,25 +39,21 @@
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
       }
-
       .b-example-vr {
         flex-shrink: 0;
         width: 1.5rem;
         height: 100vh;
       }
-
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
       }
-
       .nav-scroller {
         position: relative;
         z-index: 2;
         height: 2.75rem;
         overflow-y: hidden;
       }
-
       .nav-scroller .nav {
         display: flex;
         flex-wrap: nowrap;
@@ -89,14 +83,11 @@
 		    z-index: 1;
 		}
     </style>
-
     
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
-
-
 	<%
 		// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
 		String userID = null;
@@ -123,7 +114,6 @@
     </div>
   </div>
 </header>
-
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -156,7 +146,6 @@
             </a>
           </li>
         </ul>
-
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
           <span>Study Category</span>
           <a class="link-secondary" href="#" aria-label="Add a new report">
@@ -168,7 +157,7 @@
             <a class="nav-link" href="Javavvs.jsp">
             <i class="bi bi-file-earmark-text"></i>
               <span data-feather="file-text" class="align-text-bottom"></span>
-              Java Language
+              java Language
             </a>
           </li>
           <li class="nav-item">
@@ -195,72 +184,38 @@
         </ul>
       </div>
     </nav>
-
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Java Language</h2>
-      </div>
-      
-<div class = "container-fluid">
+        <h2>java Script Language</h2>
+      </div> 
+    <div class="container-fluid">
 		<div class="row">
-			<table class="table table=striped" style="text-align: center; border: 1px solid #dddddd">
-				<thead>
-					<tr>
-						<th style="background-color: #eeeeee; text-align: center;">번호</th>
-						<th style="background-color: #eeeeee; text-align: center;">제목</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성자</th>
-						<th style="background-color: #eeeeee; text-align: center;">작성일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%
-						BbsDAO bbsDAO = new BbsDAO(); // 객체 생성
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
-						for(int i = 0; i < list.size(); i++){
-					%>
-					<tr>
-						<td><%= list.get(i).getBbsID() %></td>
-						<!--  게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 건다. -->
-						<td><a href = "view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
-							<%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
-									.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
-						<td><%= list.get(i).getUserID() %></td>
-						<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13) + "시" + list.get(i).getBbsDate().substring(14,16) + "분 " %></td>
-					</tr>
-					<%
-					}
-					%>
-				</tbody>
-			</table>
-			<!-- 페이징 처리 영역 -->
-			<%
-				if(pageNumber != 1){
-			%>
-				<a href="Javavvs.jsp?pageNumber=<%=pageNumber-1 %>"
-					class="btn btn-succes btn-arraw-left">이전</a>
-			<%
-				}
-			%>
-			
-			<% 
-				if(bbsDAO.nextPage(pageNumber + 1)){
-			%>
-				<a href="Javavvs.jsp?pageNumber=<%=pageNumber + 1%>"
-					class="btn btn-success btn-arraw-Left">다음</a>
-			<%
-				}
-			%>
-			<!-- 글쓰기 버튼 생성 -->
+			<form method="post" action="writeAction.jsp">
+				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+					<thead>
+						<tr>
+							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글쓰기 양식</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+						</tr>
+						<tr>
+							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 글쓰기 버튼 생성 -->
+				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+			</form>
 		</div>
-		<a href="jwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
-	</div>	
+	</div>  
+	
 	<!-- 게시판 메인 페이지 영역 끝 -->
 				</main></div>
 </div>
-
-
     
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </body>

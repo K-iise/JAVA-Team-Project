@@ -27,13 +27,11 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
       }
-
       .b-example-divider {
         height: 3rem;
         background-color: rgba(0, 0, 0, .1);
@@ -41,25 +39,21 @@
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
       }
-
       .b-example-vr {
         flex-shrink: 0;
         width: 1.5rem;
         height: 100vh;
       }
-
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
       }
-
       .nav-scroller {
         position: relative;
         z-index: 2;
         height: 2.75rem;
         overflow-y: hidden;
       }
-
       .nav-scroller .nav {
         display: flex;
         flex-wrap: nowrap;
@@ -89,14 +83,11 @@
 		    z-index: 1;
 		}
     </style>
-
     
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
-
-
 	<%
 		// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
 		String userID = null;
@@ -123,7 +114,6 @@
     </div>
   </div>
 </header>
-
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -142,21 +132,20 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="Contestvvs.jsp">
             <i class="bi bi-alarm-fill"></i>
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               공모전 및 경진대회 안내
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="jobvvs.jsp">
             <i class="bi bi-bell"></i>
               <span data-feather="users" class="align-text-bottom"></span>
               학과 취업 공지사항
             </a>
           </li>
         </ul>
-
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
           <span>Study Category</span>
           <a class="link-secondary" href="#" aria-label="Add a new report">
@@ -195,11 +184,10 @@
         </ul>
       </div>
     </nav>
-
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Java Language</h2>
-      </div>
+        <h2>HTML+CSS Language</h2>
+      </div> 
       
 <div class = "container-fluid">
 		<div class="row">
@@ -236,7 +224,7 @@
 			<%
 				if(pageNumber != 1){
 			%>
-				<a href="Javavvs.jsp?pageNumber=<%=pageNumber-1 %>"
+				<a href="htmlbbs.jsp?pageNumber=<%=pageNumber-1 %>"
 					class="btn btn-succes btn-arraw-left">이전</a>
 			<%
 				}
@@ -245,22 +233,19 @@
 			<% 
 				if(bbsDAO.nextPage(pageNumber + 1)){
 			%>
-				<a href="Javavvs.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="htmlbbs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success btn-arraw-Left">다음</a>
 			<%
 				}
 			%>
 			<!-- 글쓰기 버튼 생성 -->
 		</div>
-		<a href="jwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+		<a href="hwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
 	</div>	
 	<!-- 게시판 메인 페이지 영역 끝 -->
 				</main></div>
 </div>
-
-
     
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
   </body>

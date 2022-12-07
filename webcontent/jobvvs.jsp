@@ -4,22 +4,26 @@
 <%@ page import="bbs.BbsDAO" %>
 <%@ page import="bbs.Bbs" %>
 <%@ page import="java.util.ArrayList" %>
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
-    <meta name="generator" content="Hugo 0.104.2">
-    <title>E-러닝 게시판</title>
-    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-러닝 게시판 웹 사이트</title>
+<link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/dashboard/">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 
-    <style>
+<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
+<link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+<meta name="theme-color" content="#712cf9">
+<style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -89,14 +93,9 @@
 		    z-index: 1;
 		}
     </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
-  </head>
-  <body>
-
-
+ <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
 	<%
 		// 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크
 		String userID = null;
@@ -110,8 +109,7 @@
 			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 		}
 	%>
-    
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+	<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="main.jsp">E-러닝 게시판</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -119,11 +117,10 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="Newlogin.jsp">Sign in</a>
+      <a class="nav-link px-3" href="login.jsp">Sign in</a>
     </div>
   </div>
-</header>
-
+</header>	
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -142,14 +139,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="Contestvvs.jsp">
             <i class="bi bi-alarm-fill"></i>
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               공모전 및 경진대회 안내
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="jobvvs.jsp">
             <i class="bi bi-bell"></i>
               <span data-feather="users" class="align-text-bottom"></span>
               학과 취업 공지사항
@@ -195,15 +192,14 @@
         </ul>
       </div>
     </nav>
-
+    
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>Java Language</h2>
+         <h2>학과 취업 공지사항</h2>
       </div>
-      
-<div class = "container-fluid">
+	<div class = "container-fluid">
 		<div class="row">
-			<table class="table table=striped" style="text-align: center; border: 1px solid #dddddd">
+			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
 						<th style="background-color: #eeeeee; text-align: center;">번호</th>
@@ -236,7 +232,7 @@
 			<%
 				if(pageNumber != 1){
 			%>
-				<a href="Javavvs.jsp?pageNumber=<%=pageNumber-1 %>"
+				<a href="vvs.jsp?pageNumber=<%=pageNumber-1 %>"
 					class="btn btn-succes btn-arraw-left">이전</a>
 			<%
 				}
@@ -245,23 +241,20 @@
 			<% 
 				if(bbsDAO.nextPage(pageNumber + 1)){
 			%>
-				<a href="Javavvs.jsp?pageNumber=<%=pageNumber + 1%>"
+				<a href="vvs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success btn-arraw-Left">다음</a>
 			<%
 				}
 			%>
-			<!-- 글쓰기 버튼 생성 -->
-		</div>
-		<a href="jwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+			</div>
+		<!-- 글쓰기 버튼 생성 -->	
+		<a href="write.jsp" class="btn btn-dark pull-right">글쓰기</a>
 	</div>	
 	<!-- 게시판 메인 페이지 영역 끝 -->
-				</main></div>
-</div>
+	
+	<!-- 부트스트랩 참조 영역 -->
+	<script src="https:code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
 
-
-    
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>

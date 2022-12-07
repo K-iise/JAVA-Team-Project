@@ -9,9 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>E-러닝 게시판</title>
+    <title>Dashboard Template · Bootstrap v5.2</title>
+
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/dashboard/">
+
     
 
+    
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
@@ -101,18 +105,9 @@
     <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
-
-
-	<%
-		String userID = null;	// 로그인을 안 한 사람이라면 null 값
-		if (session.getAttribute("userID") != null)	// 로그인을 한 사람이라면 값 유지
-		{
-			userID = (String) session.getAttribute("userID");
-		}
-	%>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="main.jsp">E-러닝 게시판</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">E-러닝 게시판</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -142,14 +137,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="Contestvvs.jsp">
             <i class="bi bi-alarm-fill"></i>
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               공모전 및 경진대회 안내
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="jobvvs.jsp">
             <i class="bi bi-bell"></i>
               <span data-feather="users" class="align-text-bottom"></span>
               학과 취업 공지사항
@@ -165,28 +160,28 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="Javavvs.jsp">
+           <a class="nav-link" href="Javavvs.jsp">
             <i class="bi bi-file-earmark-text"></i>
               <span data-feather="file-text" class="align-text-bottom"></span>
-              Java Language
+              java Language
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="cbbs.jsp">
             <i class="bi bi-file-earmark-text"></i>
               <span data-feather="file-text" class="align-text-bottom"></span>
               C# Language
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="jascbbs.jsp">
             <i class="bi bi-file-earmark-text"></i>
               <span data-feather="file-text" class="align-text-bottom"></span>
               JavaScript
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="htmlbbs.jsp">
             <i class="bi bi-file-earmark-text"></i>
               <span data-feather="file-text" class="align-text-bottom"></span>
               HTML+CSS
