@@ -29,6 +29,15 @@
 <meta name="theme-color" content="#712cf9">
 
 
+	<%
+		String userID = null;	// 로그인을 안 한 사람이라면 null 값
+		if (session.getAttribute("userID") != null)	// 로그인을 한 사람이라면 값 유지
+		{
+			userID = (String) session.getAttribute("userID");
+		}
+	%>
+
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -114,7 +123,21 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
+    <%
+				if(userID == null)	// 로그인 X
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
       <a class="nav-link px-3" href="Newlogin.jsp">Sign in</a>
+			<%
+				} else				// 로그인 O
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
+      <a class="nav-link px-3" href="logoutAction.jsp">Log out</a>
+			<% 		
+				}
+			%>
     </div>
   </div>
 </header>

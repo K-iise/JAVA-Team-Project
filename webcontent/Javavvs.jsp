@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="bbs.BbsDAO" %>
-<%@ page import="bbs.Bbs" %>
+<%@ page import="jbbs.jBbsDAO" %>
+<%@ page import="jbbs.jBbs" %>
 <%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html lang="ko">
@@ -119,7 +119,21 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
+    <%
+				if(userID == null)	// 로그인 X
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
       <a class="nav-link px-3" href="Newlogin.jsp">Sign in</a>
+			<%
+				} else				// 로그인 O
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
+      <a class="nav-link px-3" href="logoutAction.jsp">Log out</a>
+			<% 		
+				}
+			%>
     </div>
   </div>
 </header>
@@ -214,18 +228,18 @@
 				</thead>
 				<tbody>
 					<%
-						BbsDAO bbsDAO = new BbsDAO(); // 객체 생성
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+						jBbsDAO jbbsDAO = new jBbsDAO(); // 객체 생성
+						ArrayList<jBbs> list = jbbsDAO.getList(pageNumber);
 						for(int i = 0; i < list.size(); i++){
 					%>
 					<tr>
-						<td><%= list.get(i).getBbsID() %></td>
+						<td><%= list.get(i).getJbbsID() %></td>
 						<!--  게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 건다. -->
-						<td><a href = "view.jsp?bbsID=<%= list.get(i).getBbsID() %>">
-							<%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
+						<td><a href = "Javavvsview.jsp?bbsID=<%= list.get(i).getJbbsID() %>">
+							<%= list.get(i).getJbbsTitle().replaceAll(" ", "&nbsp;")
 									.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
 						<td><%= list.get(i).getUserID() %></td>
-						<td><%= list.get(i).getBbsDate().substring(0,11) + list.get(i).getBbsDate().substring(11,13) + "시" + list.get(i).getBbsDate().substring(14,16) + "분 " %></td>
+						<td><%= list.get(i).getJbbsDate().substring(0,11) + list.get(i).getJbbsDate().substring(11,13) + "시" + list.get(i).getJbbsDate().substring(14,16) + "분 " %></td>
 					</tr>
 					<%
 					}
@@ -243,7 +257,7 @@
 			%>
 			
 			<% 
-				if(bbsDAO.nextPage(pageNumber + 1)){
+				if(jbbsDAO.nextPage(pageNumber + 1)){
 			%>
 				<a href="Javavvs.jsp?pageNumber=<%=pageNumber + 1%>"
 					class="btn btn-success btn-arraw-Left">다음</a>
@@ -252,7 +266,7 @@
 			%>
 			<!-- 글쓰기 버튼 생성 -->
 		</div>
-		<a href="jwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+		<a href="jwrite.jsp" class="btn btn-dark pull-right">글쓰기</a>
 	</div>	
 	<!-- 게시판 메인 페이지 영역 끝 -->
 				</main></div>

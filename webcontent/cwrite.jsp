@@ -110,7 +110,21 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
+    <%
+				if(userID == null)	// 로그인 X
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
       <a class="nav-link px-3" href="Newlogin.jsp">Sign in</a>
+			<%
+				} else				// 로그인 O
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
+      <a class="nav-link px-3" href="logoutAction.jsp">Log out</a>
+			<% 		
+				}
+			%>
     </div>
   </div>
 </header>
@@ -186,11 +200,11 @@
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>c# Language</h2>
+        <h2>C# Language</h2>
       </div> 
     <div class="container-fluid">
 		<div class="row">
-			<form method="post" action="cwriteAction.jsp">
+			<form method="get" action="cwriteAction.jsp">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -207,7 +221,7 @@
 					</tbody>
 				</table>
 				<!-- 글쓰기 버튼 생성 -->
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+				<input type="submit" class="btn btn-dark pull-right" value="글쓰기">
 			</form>
 		</div>
 	</div>  

@@ -110,10 +110,25 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
+    <%
+				if(userID == null)	// 로그인 X
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
       <a class="nav-link px-3" href="Newlogin.jsp">Sign in</a>
+			<%
+				} else				// 로그인 O
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
+      <a class="nav-link px-3" href="logoutAction.jsp">Log out</a>
+			<% 		
+				}
+			%>
     </div>
   </div>
 </header>
+
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -186,7 +201,7 @@
     </nav>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2>c# Language</h2>
+        <h2>C# Language</h2>
       </div> 
       
 <div class = "container-fluid">
@@ -209,7 +224,7 @@
 					<tr>
 						<td><%= list.get(i).getcbbsID() %></td>
 						<!--  게시글 제목을 누르면 해당 글을 볼 수 있도록 링크를 건다. -->
-						<td><a href = "view.jsp?bbsID=<%= list.get(i).getcbbsID() %>">
+						<td><a href = "cbbsview.jsp?bbsID=<%= list.get(i).getcbbsID() %>">
 							<%= list.get(i).getCbbsTitle().replaceAll(" ", "&nbsp;")
 									.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></a></td>
 						<td><%= list.get(i).getUserID() %></td>
@@ -220,7 +235,9 @@
 					%>
 				</tbody>
 			</table>
-			<!-- 페이징 처리 영역 -->
+
+		</div>
+					<!-- 페이징 처리 영역 -->
 			<%
 				if(pageNumber != 1){
 			%>
@@ -239,8 +256,7 @@
 				}
 			%> 
 			<!-- 글쓰기 버튼 생성 -->
-		</div>
-		<a href="cwrite.jsp" class="btn btn-primary pull-right">글쓰기</a>
+		<a href="cwrite.jsp" class="btn btn-dark pull-right">글쓰기</a>
 	</div>	
 	<!-- 게시판 메인 페이지 영역 끝 -->
 				</main></div>

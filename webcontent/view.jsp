@@ -72,7 +72,7 @@
 					<!-- 드랍다운 아이템 영역 -->	
 					<ul class="dropdown-menu">
 						<li><a href="login.jsp">로그인</a></li>
-						<li><a href="join.jsp">회원가입</a></li>
+						<li><a href="join.jsp">회원가입</a></li>	
 					</ul>
 				</li>
 			</ul>

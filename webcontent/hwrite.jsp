@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
-<%@ page import="bbs.BbsDAO" %>
-<%@ page import="bbs.Bbs" %>
+<%@ page import="hbbs.hBbsDAO" %>
+<%@ page import="hbbs.hBbs" %>
 <%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html lang="ko">
@@ -110,10 +110,25 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
+    <%
+				if(userID == null)	// 로그인 X
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
       <a class="nav-link px-3" href="Newlogin.jsp">Sign in</a>
+			<%
+				} else				// 로그인 O
+				{
+			%>
+			<%-- 드랍다운 메뉴 --%>
+      <a class="nav-link px-3" href="logoutAction.jsp">Log out</a>
+			<% 		
+				}
+			%>
     </div>
   </div>
 </header>
+
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -190,7 +205,7 @@
       </div> 
     <div class="container-fluid">
 		<div class="row">
-			<form method="post" action="writeAction.jsp">
+			<form method="post" action="hwriteAction.jsp">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -199,15 +214,15 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="hbbsTitle" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="hbbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>
 				<!-- 글쓰기 버튼 생성 -->
-				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+				<input type="submit" class="btn btn-dark pull-right" value="글쓰기">
 			</form>
 		</div>
 	</div>  
