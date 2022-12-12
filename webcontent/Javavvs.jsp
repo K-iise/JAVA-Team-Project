@@ -156,14 +156,14 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="Contestvvs.jsp">
             <i class="bi bi-alarm-fill"></i>
               <span data-feather="shopping-cart" class="align-text-bottom"></span>
               공모전 및 경진대회 안내
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="jobvvs.jsp">
             <i class="bi bi-bell"></i>
               <span data-feather="users" class="align-text-bottom"></span>
               학과 취업 공지사항

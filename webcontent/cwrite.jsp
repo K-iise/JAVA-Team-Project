@@ -222,6 +222,9 @@
 				</table>
 				<!-- 글쓰기 버튼 생성 -->
 				<input type="submit" class="btn btn-dark pull-right" value="글쓰기">
+				<tr>
+				<td><input type="file" name="fileName"></td>
+				</tr>
 			</form>
 		</div>
 	</div>  

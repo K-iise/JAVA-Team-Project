@@ -55,7 +55,7 @@ request.setCharacterEncoding("UTF-8");
 			else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("location.href='vvs.jsp'");
+				script.println("location.href='Javavvs.jsp'");
 				script.println("</script>");
 			}
 		}

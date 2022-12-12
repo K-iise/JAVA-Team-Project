@@ -219,6 +219,7 @@
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용" name="jbbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
 						</tr>
+									
 					</tbody>
 				</table>
 				<!-- 글쓰기 버튼 생성 -->

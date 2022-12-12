@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="bbs.BbsDAO"%>
-<%@ page import="bbs.Bbs"%>
+<%@ page import="jbbs.jBbsDAO"%>
+<%@ page import="jbbs.jBbs"%>
 <%
 request.setCharacterEncoding("UTF-8");
 %>
@@ -26,34 +26,34 @@ request.setCharacterEncoding("UTF-8");
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 하세요')");
-		script.println("location.href='login.jsp'");
+		script.println("location.href='Newlogin.jsp'");
 		script.println("</script>");	
 	}
 	
-	int bbsID = 0;
-	if(request.getParameter("bbsID") != null){
-		bbsID = Integer.parseInt(request.getParameter("bbsID"));	
+	int jbbsID = 0;
+	if(request.getParameter("jbbsID") != null){
+		jbbsID = Integer.parseInt(request.getParameter("jbbsID"));	
 	}
-	if(bbsID == 0){
+	if(jbbsID == 0){
 		PrintWriter script = response.getWriter();
 		script.println("<scipt>");
 		script.println("alert('유효하지 않은 글입니다')");
-		script.println("location.href='vvs.jsp'");
+		script.println("location.href='Javavvs.jsp'");
 		script.println("</script>");
 	}
 	
-	//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
-	Bbs bbs = new BbsDAO().getBbs(bbsID);
+	//해당 'jbbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
+	jBbs bbs = new jBbsDAO().getjbbs(jbbsID);
 		if(!userID.equals(bbs.getUserID())){
 			PrintWriter script = response.getWriter();
 			script.println("<scipt>");
 			script.println("alert('권한이 없습니다')");
-			script.println("location.href='vvs.jsp'");
+			script.println("location.href='Javavvs.jsp'");
 			script.println("</script>");
 		} else{
 			//입력이 안 된 부분이 있는지 체크한다
 			
-			if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null) {
+			if(bbs.getJbbsTitle() == null || bbs.getJbbsContent() == null) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다.')");
@@ -61,8 +61,8 @@ request.setCharacterEncoding("UTF-8");
 				script.println("</script>");
 			}else {
 				//정상적으로 입력이 되었다면 글쓰기 로직을 수행한다.
-				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.update(bbsID, request.getParameter("bbsTitle"),request.getParameter("bbsContent"));
+				jBbsDAO bbsDAO = new jBbsDAO();
+				int result = bbsDAO.update(jbbsID, request.getParameter("jbbsTitle"),request.getParameter("jbbsContent"));
 				//데이터베이스 오류인 경우
 				if(result == -1){
 					PrintWriter script = response.getWriter();
@@ -75,7 +75,7 @@ request.setCharacterEncoding("UTF-8");
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
 					script.println("alert('글쓰기 성공')");
-					script.println("location.href='vvs.jsp'");
+					script.println("location.href='Javavvs.jsp'");
 					script.println("</script>");
 					}		
 			}	

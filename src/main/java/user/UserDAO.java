@@ -44,15 +44,14 @@ public class UserDAO {
 	
 	// 회원가입 기능을 담당하는 메소드
 	public int join(User user) {
-		String sql = "INSERT INTO USER (userID,userPassword,userName,userGender,userEmail) VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO USER (userID,userPassword,userName,userEmail) VALUES(?, ?, ?, ?)";
 		// user 테이블에 데이터를 입력하는 쿼리문
 		try {
 			pstmt = conn.prepareStatement(sql); // SQL 쿼리문을 대기시킨다.
 			pstmt.setString(1, user.getUserID());
 			pstmt.setString(2, user.getUserPassword());
 			pstmt.setString(3, user.getUserName());
-			pstmt.setString(4, user.getUserGender());
-			pstmt.setString(5, user.getUserEmail());
+			pstmt.setString(4, user.getUserEmail());
 			return pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();

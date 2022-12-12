@@ -13,7 +13,7 @@
         <h4 class="title">동의대 공지사항</h4>
         <div class="cont">
             <p>
-<img src="aa.png" width=350 height=500 usemap="#popup" alt="event page">
+<img src="https://www.korea.kr/newsWeb/resources/attaches/2022.11/22/08_00.jpg" width=350 height=500 usemap="#popup" alt="event page">
             </p>
         </div>
           <form name="pop_form">

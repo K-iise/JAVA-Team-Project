@@ -12,6 +12,7 @@ public class jBbsDAO {
 	private Connection conn; // 자바와 데이터베이스를 연결
 	private ResultSet rs; // 결과값 받아오기
 	
+	//	데이터베이스를 연결하는 생성자.
 	public jBbsDAO() {
 		try {
 			String dbURL = "jdbc:mysql://localhost:3306/vvs";
@@ -24,9 +25,9 @@ public class jBbsDAO {
 		}
 	}
 	
-	// 작성일자 메소드
+	// 작성일자를 기록하는 메소드
 	public String getDate() {
-		String SQL = "SELECT NOW()"; // 쿼리문
+		String SQL = "SELECT NOW()"; // 현재 시간을 가져오는 쿼리문.
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			rs = pstmt.executeQuery();
@@ -57,7 +58,7 @@ public class jBbsDAO {
 		
 	}
 	
-	// 글쓰기 메소드
+	// 글쓰기 메소드 DB에 데이터를 삽입.
 	public int write(String jbbsTitle, String userID, String jbbsContent) {
 		String SQL = "INSERT INTO JBBS VALUES (?, ?, ?, ?, ?, ?)";
 		try {
@@ -75,9 +76,10 @@ public class jBbsDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	// 게시글 리스트 메소드.
+	// 게시글 리스트를 불러오는 메소드.
 	public ArrayList<jBbs> getList(int pageNumber){
 		String SQL = "select * from jbbs where jbbsID < ? and jbbsAvailable = 1 order by jbbsID desc limit 10";
+		//	게시글 보기가 허용된 컬럼 사이에서 
 		ArrayList<jBbs> list = new ArrayList<jBbs>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -115,6 +117,7 @@ public class jBbsDAO {
 		return false;
 	}
 	
+	//	게시글의 유효번호의 데이터들을 다 가져오는 메소드.
 	public jBbs getjbbs(int bbsID) {
 		String SQL = "SELECT * FROM JBBS WHERE jbbsID = ?";
 		try {
@@ -168,6 +171,7 @@ public class jBbsDAO {
 		
 	}
 	
+	//	게시글 조회 시 카운트 증가 메소드.
 	public int read(int bbsID)
 	{
 		PreparedStatement pstmt = null;

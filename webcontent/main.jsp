@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<jsp:include page="popup.jsp"/>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -27,7 +28,6 @@
 <link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
 <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
 <meta name="theme-color" content="#712cf9">
-
 
 	<%
 		String userID = null;	// 로그인을 안 한 사람이라면 null 값

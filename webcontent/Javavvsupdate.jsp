@@ -210,51 +210,32 @@
         <h2>Java Language</h2>
       </div>
       
-<!-- 게시판 글보기 양식 영역 시작 -->
-	<div class="container-fluid">	
+    <div class="container-fluid">
 		<div class="row">
+			<form method="post" action="jupdateAction.jsp?jbbsID=<%= jbbsID %>">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
-							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글 보기</th>
+							<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글 수정 양식</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td style="width: 20%;">글제목</td>
-							<td colspan="2"><%= jbbs.getJbbsTitle().replaceAll(" ", "&nbsp;")
-									.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>") %></td>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="jbbsTitle" maxlength="50"
+								value = "<%=jbbs.getJbbsTitle() %>"></td>
 						</tr>
 						<tr>
-							<td>작성자</td>
-							<td colspan="2"><%= jbbs.getUserID() %></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="jbbsContent" maxlength="2048" style="height: 350px;"><%=jbbs.getJbbsContent() %></textarea></td>
 						</tr>
-						<tr>
-							<td>작성일자</td>
-							<td colspan="2"><%= jbbs.getJbbsDate().substring(0,11) + jbbs.getJbbsDate().substring(11,13) + "시" + jbbs.getJbbsDate().substring(14,16) + "분 "%></td>
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td colspan="2" style="height: 200px; text-align: Left"><%= jbbs.getJbbsContent().replaceAll(" ", "&nbsp;")
-							.replaceAll("<", "&lt;").replaceAll(">","&gt;").replaceAll("\n","<br>")%></td>
-						</tr>
+									
 					</tbody>
 				</table>
-
+				<!-- 글쓰기 버튼 생성 -->
+				<input type="submit" class="btn btn-dark pull-right" value="수정하기">
+			</form>
 		</div>
-	</div>
-					<!-- 목록 버튼 생성 -->
-				<a href="Javavvs.jsp" class="btn btn-dark pull-right">목록</a>
-				
-				<!-- 해당 글의 작성자가 본인이라면 수정과 삭제가 가능하도록 코드 추가 -->
-				<%
-					if(userID != null && userID.equals(jbbs.getUserID())){
-				%>
-					<a href="Javavvsupdate.jsp?bbsID=<%= jbbsID %>" class="btn btn-dark pull-right">수정</a>
-					<a href="jdeleteAction.jsp?bbsID=<%=jbbsID%>" class="btn btn-dark pull-right">삭제</a>
-				<%
-					}
-				%>
+	</div>  
+	
 				</main></div>
 </div>
 

@@ -113,7 +113,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다')");
-			script.println("location.href= 'vvs.jsp'");
+			script.println("location.href= cbbs.jsp'");
 			script.println("</script>");
 		}
 		
